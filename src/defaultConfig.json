@@ -1,0 +1,17 @@
+{
+    "stacks": [
+        {
+            "folders_to_remove": [
+                "node_modules"
+            ],
+            "project_file_pattern": "package.json"
+        },
+        {
+            "folders_to_remove": [
+                "bin",
+                "obj"
+            ],
+            "project_file_pattern": "*.csproj"
+        }
+    ]
+}
