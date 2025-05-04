@@ -18,6 +18,15 @@ jobs:
       with:
         go-version: '1.24.2'
 
+    - name: Create files
+      run: |
+        mkdir -p core/tmp/path/to/cs_project/bin
+        mkdir -p core/tmp/path/to/cs_project/obj
+        echo "" > core/tmp/path/to/cs_project/project.csproj
+
+        mkdir -p core/tmp/path/to/js_project/node_modules
+        echo "" > core/tmp/path/to/js_project/package.json
+
     - name: Build
       run: go build -v ./...
 

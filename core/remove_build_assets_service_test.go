@@ -3,6 +3,7 @@ package core_test
 import (
 	"log"
 	"os"
+	"path/filepath"
 	"testing"
 
 	"github.com/cassiofariasmachado/remove-build-assets/core"
@@ -26,14 +27,11 @@ func init() {
 }
 
 func createFiles() {
-	os.MkdirAll("tmp/path/to", os.ModeDir)
-	os.MkdirAll("tmp/path/to/cs_project", os.ModeDir)
-	os.MkdirAll("tmp/path/to/cs_project/bin/", os.ModeDir)
-	os.MkdirAll("tmp/path/to/cs_project/obj/", os.ModeDir)
+	os.MkdirAll("tmp/path/to/cs_project/bin", os.ModeDir)
+	os.MkdirAll("tmp/path/to/cs_project/obj", os.ModeDir)
 	os.Create("tmp/path/to/cs_project/project.csproj")
 
-	os.MkdirAll("tmp/path/to/js_project/", os.ModeDir)
-	os.MkdirAll("tmp/path/to/js_project/node_modules/", os.ModeDir)
+	os.MkdirAll("tmp/path/to/js_project/node_modules", os.ModeDir)
 	os.Create("tmp/path/to/js_project/package.json")
 }
 
@@ -47,9 +45,9 @@ func TestListFoldersShouldListFoldersToRemoveCorrectly(t *testing.T) {
 	service.ListFolders("tmp/path/to")
 
 	expecteFolderToRemove := []string{
-		"tmp\\path\\to\\cs_project\\bin",
-		"tmp\\path\\to\\cs_project\\obj",
-		"tmp\\path\\to\\js_project\\node_modules",
+		filepath.Clean("tmp/path/to/cs_project/bin"),
+		filepath.Clean("tmp/path/to/cs_project/obj"),
+		filepath.Clean("tmp/path/to/js_project/node_modules"),
 	}
 
 	require.Equal(t, expecteFolderToRemove, service.FoldersToRemove)
