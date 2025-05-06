@@ -3,7 +3,7 @@ package core_test
 import (
 	"testing"
 
-	"github.com/cassiofariasmachado/remove-build-assets/core"
+	"github.com/cassiofariasmachado/rm-build-assets/core"
 	"github.com/stretchr/testify/require"
 )
 

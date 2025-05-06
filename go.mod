@@ -1,4 +1,4 @@
-module github.com/cassiofariasmachado/remove-build-assets
+module github.com/cassiofariasmachado/rm-build-assets
 
 go 1.24.2
 
